@@ -1,0 +1,30 @@
+<fieldset class="col-12 col-md-12 px-3" *ngIf="datos">
+  <legend class="text-primary">Datos Personales:</legend>
+  <div class="row">
+    <div class="col-md-6 ">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Nombre" type="text" [(ngModel)]="usuarioData.nombres" disabled>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Cédula" type="text" [(ngModel)]="usuarioData.cedula" disabled>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="ID" type="text" [(ngModel)]="usuarioData.id" disabled>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Correo Institucional" type="email" [(ngModel)]="usuarioData.correoInstitucional" disabled>
+      </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Correo Personal" type="email" [(ngModel)]="usuarioData.correoPersonal" disabled>
+      </mat-form-field>
+    </div>
+  </div>
+</fieldset>

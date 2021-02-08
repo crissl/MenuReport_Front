@@ -1,0 +1,147 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Menú de Reportes</h4>
+            <p class="card-category">Sólo usuarios autorizados pueden crear menús</p>
+          </div>
+          <div class="card-body">
+              <p>*AQUI PODRA CREAR LOS MENUS Y SUBMENUS PARA ALOJAR EL CONTENIDO DE REPOSTES.</p>
+              <form [formGroup]="registroMenuPadre" (ngSubmit)="crearMenu()">
+              <fieldset class="col-12 col-md-12 px-3">
+                <legend class="text-primary">Menú principal:</legend>
+                    <div class="col-md-12" class="form-group">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Nombre del menú principal"  formControlName="nombre"  type="text">
+                        <!-- [ngClass]="{ 'is-invalid': submitted &amp;&amp; registroMenuPadre.controls.name.errors }">
+                        <div *ngIf="submitted &amp;&amp; registroMenuPadre.controls.nombre.errors" class="text-danger">
+                          <div *ngIf="registroMenuPadre.controls.name.errors.required">El nombre es requerido</div>
+                        </div> -->
+                      </mat-form-field>
+                      <a>
+                        <div class="d-flex w-100 justify-content-between">
+                        </div>
+                      </a>
+                    </div>
+                <div class="form-group">
+                  <button class="btn btn-danger pull-right"><span class="material-icons">
+                    add_box
+                    </span> &nbsp; &nbsp;Guardar</button>
+                </div>
+              </fieldset> 
+            </form>
+            <form [formGroup]="registroMenuHijo" (ngSubmit)="crearSubMenu()">
+              <fieldset class="col-12 col-md-12 px-3">
+                <legend class="text-primary">Sub Menú:</legend>
+                <div class="row">
+                  <div class="col-md-6">
+                    <mat-form-field>
+                      <mat-label>Escoja menú principal</mat-label>
+                      <mat-select name="menuPadre" formControlName="idF" >
+                        <mat-option  *ngFor="let menu of menusP" value="{{menu.idP}}">
+                          {{menu.nombre}} {{menu.id}} 
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                 
+                    <div class="col-md-12" class="form-group">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Nombre del Sub Menú"  formControlName="nombre"  type="text">
+                        <!-- [ngClass]="{ 'is-invalid': submitted &amp;&amp; registroMenuPadre.controls.name.errors }">
+                        <div *ngIf="submitted &amp;&amp; registroMenuPadre.controls.nombre.errors" class="text-danger">
+                          <div *ngIf="registroMenuPadre.controls.name.errors.required">El nombre es requerido</div>
+                        </div> -->
+                      </mat-form-field>
+                      <a>
+                        <div class="d-flex w-100 justify-content-between">
+                        </div>
+                      </a>
+                    </div>
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-outline-danger pull-right">
+                    <span class="material-icons" style="font-size: 25px">
+                      add_box
+                      </span>&nbsp;A
+                  </button>
+                </div>
+              </fieldset> 
+            </form>
+            <form [formGroup]="registroContenido" (ngSubmit)="crearContenido()">
+              <fieldset class="col-12 col-md-12 px-3">
+                <div class="clearfix"></div>
+                <legend class="text-primary">Contenido Menú:</legend>
+                <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <mat-label>Escoja menú principal</mat-label>
+                    <mat-select name="menuPadre" formControlName="idF"> 
+                      <mat-option  *ngFor="let menu of menusP" value="{{menu.idP}}" (click)="buscarMenu(menu.idP)">
+                        {{menu.nombre}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field>
+                    <mat-label>Escoja sub menú</mat-label>
+                    <mat-select name="menuHijo" formControlName="codigoMenuF">
+                      <mat-option *ngFor="let menuh of menusH" value="{{menuh.codigoMenu}}">
+                        {{menuh.nombre}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Nombre" [(ngModel)]="nombre"  formControlName="nombre" type="text">
+                    </mat-form-field>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="descripcion"  [(ngModel)]="descripcion" formControlName="descripcion" type="text">
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="link" [(ngModel)]="link" formControlName="link" type="text">
+                    </mat-form-field>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <div class="container-input-file">
+                      <label class="custom-file">
+                        <span class="material-icons">
+                          perm_media
+                        </span>
+                        <input type="file" formControlName="imagen"
+                          (change)="handleImage($event)" accept="image/*" />
+                          <img/>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <button class="btn btn-outline-danger pull-right">
+                    <span class="material-icons" style="font-size: 25px">
+                      add_box
+                      </span>&nbsp;Guardar
+                  </button>
+                  <div class="clearfix"></div>
+                </div>
+              </fieldset>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,52 @@
+<header class="main-content">
+  <nav>
+      <ul class="nav nav-pills float-right">
+          <li class="nav-item">
+              <button type="button" class="btn btn-primary">
+                Blogs
+              </button>
+          </li>
+          <li class="nav-item">
+              <button type="button" class="btn btn-link" data-toggle="modal" data-target="#exampleModal">
+                Nueva
+              </button>
+          </li>
+      </ul>
+  </nav>
+  <h3 class="text-muted">Reportes </h3>
+  <main role="main">
+ 
+    <div class="list-group">
+  
+      <a *ngFor="let menu of menus" href="{{menu.link}}"class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">{{menu.nombre}}</h5>
+              <small>{{menu.link}}</small>
+          </div>
+          <!-- <div [style.background-image]="getBackground(menu.imagen)" class="trending-content">
+          </div> -->
+          <img alt="105x105" src="data:image/octet-stream;lob, {{menu.imagen}}" class="card-img-top" target = "_ blank"  ng-fallimg="profile" height="300">
+          <!-- <input type="file" class="form-control"  (change)="getImagem($event, imagem)"> -->
+
+            <!-- <img class="img-responsive"  src="{{menu.imagen}}" alt="imagem..." style="width: 200px;"/>    -->
+          <p class="mb-1 d-flex w-100 justify-content-between"></p>
+          <!-- <p class="mb-1 d-flex w-100 justify-content-between">imagen</p> -->
+
+          <div class="d-flex w-100 justify-content-between">
+            <small></small>
+
+            <div>
+
+             <!-- <button type="button" class="btn btn-info btn-just-icon btn-round btn-link" data-toggle="modal" data-target="#exampleModal2"><span class="material-icons" pTooltip="Editar" tooltipPosition="top" (click)="informacionNoticia(noticia.id_noticia, 'editar')">create</span></button>
+             <button type="button" class="btn btn-danger btn-just-icon btn-round btn-link"><span class="material-icons" pTooltip="Eliminar" tooltipPosition="top" (click)="informacionNoticia(noticia.id_noticia, 'eliminar')">delete</span></button> -->
+            </div>
+            
+           </div>
+      </a>
+     
+    </div>
+      <!-- <app-add-post (postAdded)="handlePostAdded()"></app-add-post> -->
+      
+  </main>
+  
+</header>
